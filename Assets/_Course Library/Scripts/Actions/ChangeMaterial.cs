@@ -14,8 +14,15 @@ public class ChangeMaterial : MonoBehaviour
 
     private void Awake()
     {
-        meshRenderer = GetComponent<MeshRenderer>();
-        originalMaterial = meshRenderer.material;
+        meshRenderer = GetComponentInChildren<MeshRenderer>();
+        if (meshRenderer != null)
+        {
+            originalMaterial = meshRenderer.material;
+        }
+        else
+        {
+            Debug.LogWarning("No MeshRenderer found on " + gameObject.name);
+        }
     }
 
     public void SetOtherMaterial()
